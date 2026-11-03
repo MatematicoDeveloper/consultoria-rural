@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!--
+  CONSULTORIA RURAL - index.html (versão simples, letras grandes)
+  MAPA RÁPIDO - o que mudar e onde:
+  - Número do WhatsApp ........ arquivo script.js (constante WA)
+  - Mensagem de cada botão .... atributo data-msg do botão
+  - Textos do site ............ procure o texto aqui no HTML e edite
+  - Cores e tamanho das letras  arquivo style.css
+  - Mascote (imagem) .......... pasta "imagens", arquivo betta.png (ao lado do index.html)
+  - Novo serviço .............. copie um card inteiro (seção SERVIÇOS)
+  Os três arquivos (index.html, style.css, script.js) ficam na mesma pasta.
+-->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<!-- SEGURANÇA: política de conteúdo (CSP). Só permite o que o site realmente usa:
+     arquivos do próprio site, sem nenhum site externo.
+     Se um dia adicionar outro serviço externo (mapa, vídeo, analytics), libere o endereço aqui. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; connect-src 'none'; base-uri 'none'; form-action 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Consultoria Rural | Regularização rural: CAR, CCIR e ITR</title>
+<meta name="description" content="Regularização de imóveis rurais sem complicação: CAR, CCIR, ITR, planta e memorial descritivo. Atendimento pelo WhatsApp.">
+<!-- Cor da barra do navegador no celular (claro / escuro) -->
+<meta name="theme-color" content="#FFFFFF" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#111111" media="(prefers-color-scheme: dark)">
+<!-- Ícone da aba: mesmo símbolo do logotipo -->
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect x='5' y='5' width='22' height='22' fill='none' stroke='%23C5A059' stroke-width='2'/%3E%3Crect x='13' y='13' width='22' height='22' fill='none' stroke='%23C5A059' stroke-width='2'/%3E%3Crect x='13' y='13' width='14' height='14' fill='%23C5A059'/%3E%3C/svg%3E">
+<!-- As fontes (Marcellus e Jost) ficam na pasta "fonts" do próprio site (veja style.css). Nada é carregado de sites externos. -->
+<!-- Todo o visual está em style.css -->
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- SÍMBOLOS REUTILIZADOS: logotipo e ícone de conversa (WhatsApp).
+     Para mudar o dourado do logotipo, troque #C5A059 abaixo. -->
+<svg class="sprite" width="0" height="0" aria-hidden="true" focusable="false">
+  <symbol id="mark" viewBox="0 0 40 40"><rect x="5" y="5" width="22" height="22" fill="none" stroke="#C5A059" stroke-width="1.6"/><rect x="13" y="13" width="22" height="22" fill="none" stroke="#C5A059" stroke-width="1.6"/><rect x="13" y="13" width="14" height="14" fill="#C5A059"/><circle cx="5" cy="5" r="1.8" fill="#C5A059"/><circle cx="35" cy="35" r="1.8" fill="#C5A059"/></symbol>
+  <symbol id="chat" viewBox="0 0 24 24"><path d="M4 5h16v11H10l-5 4v-4H4z"/></symbol>
+</svg>
+
+<!-- ===== CABEÇALHO: só o logotipo ===== -->
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#topo" aria-label="Consultoria Rural"><svg class="mark"><use href="#mark"/></svg><span><b>CONSULTORIA</b><small>RURAL</small></span></a>
+  </div>
+</header>
+
+<main id="topo">
+
+  <!-- ===== INÍCIO: título, os 3 passos de como usar o site e o mascote ===== -->
+  <div class="hero">
+    <div class="wrap">
+      <div>
+        <h1>Regularização rural sem complicação.</h1>
+        <!-- COMO USAR: 3 passos bem simples. Para mudar o texto, edite as frases abaixo -->
+        <ol class="steps">
+          <li><span>1</span>Escolha o serviço abaixo.</li>
+          <li><span>2</span>Toque no botão dourado. O WhatsApp abre sozinho.</li>
+          <li><span>3</span>Aperte em enviar. Nós respondemos.</li>
+        </ol>
+      </div>
+      <!-- MASCOTE: usa o arquivo imagens/betta.png (pasta "imagens" ao lado do index.html).
+           Se o arquivo for .webp, .jpg ou .jpeg, o site encontra sozinho. O arquivo original não é alterado. -->
+      <div class="mascot"><img src="imagens/betta.png" width="340" height="340" decoding="async" alt="Mascote betta da Consultoria Rural"><span>Espaço do mascote betta</span></div>
+    </div>
+  </div>
+
+  <!-- ===== SERVIÇOS: 5 cards. Cada botão abre o WhatsApp com a mensagem escrita em data-msg ===== -->
+  <section class="section" id="servicos">
+    <div class="wrap">
+      <div class="head">
+        <h2>Qual serviço você precisa?</h2>
+      </div>
+      <div class="grid">
+
+        <!-- CARD 1: CAR (ícone, nome, explicação e botão). Para criar outro serviço, copie um card inteiro -->
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 8l8-4 8 4v8l-8 4-8-4z"/><circle cx="12" cy="12" r="2"/></svg></div>
+          <h3>CAR</h3>
+          <p>O registro ambiental da sua propriedade. Nós fazemos para você.</p>
+          <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de atendimento para fazer o CAR (Cadastro Ambiental Rural) do meu imóvel." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Pedir o CAR<small>pelo WhatsApp</small></span></a>
+        </article>
+
+        <!-- CARD 2: CCIR -->
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M6 3h9l4 4v14H6z"/><path d="M15 3v4h4"/><path d="M9 12h7M9 16h5"/></svg></div>
+          <h3>CCIR</h3>
+          <p>O documento da sua terra no INCRA. Emitimos e atualizamos para você.</p>
+          <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de emitir ou atualizar o CCIR do meu imóvel rural." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Pedir o CCIR<small>pelo WhatsApp</small></span></a>
+        </article>
+
+        <!-- CARD 3: ITR -->
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8.5 15.5l7-7"/><circle cx="9" cy="9" r="1"/><circle cx="15" cy="15" r="1"/></svg></div>
+          <h3>ITR</h3>
+          <p>O imposto da propriedade rural. Fazemos a declaração para você.</p>
+          <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de atendimento para a declaração do ITR do meu imóvel." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Pedir o ITR<small>pelo WhatsApp</small></span></a>
+        </article>
+
+        <!-- CARD 4: PLANTA -->
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 7l7-3 9 4-2 10-8 2-6-5z"/><circle cx="4" cy="7" r="1"/><circle cx="11" cy="4" r="1"/><circle cx="20" cy="8" r="1"/></svg></div>
+          <h3>Planta</h3>
+          <p>O desenho da sua terra, com medidas e limites. Fazemos para você.</p>
+          <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de atendimento para fazer a planta do meu imóvel rural." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Pedir a Planta<small>pelo WhatsApp</small></span></a>
+        </article>
+
+        <!-- CARD 5: MEMORIAL DESCRITIVO -->
+        <article class="card">
+          <div class="ico"><svg viewBox="0 0 24 24"><path d="M5 4h11a3 3 0 0 1 3 3v13H8a3 3 0 0 1-3-3z"/><path d="M5 17a3 3 0 0 1 3-3h11"/><path d="M9 8h6"/></svg></div>
+          <h3>Memorial descritivo</h3>
+          <p>O texto que descreve os limites da sua terra. Fazemos para você.</p>
+          <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de atendimento para fazer o memorial descritivo do meu imóvel rural." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Pedir o Memorial<small>pelo WhatsApp</small></span></a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CONTATO (fundo preto) + RODAPÉ ===== -->
+  <section class="band" id="contato">
+    <div class="wrap">
+      <h2>Não sabe qual escolher?</h2>
+      <p>Sem problema. Fale com a gente e explicamos com calma.</p>
+      <a class="btn" data-msg="Olá, Consultoria Rural! Gostaria de falar sobre o meu imóvel rural." href="#contato"><svg class="ic"><use href="#chat"/></svg><span class="t">Falar com a gente<small>pelo WhatsApp</small></span></a>
+    </div>
+    <!-- Rodapé -->
+    <div class="wrap foot">
+      <a class="logo" href="#topo" aria-label="Consultoria Rural"><svg class="mark"><use href="#mark"/></svg><span><b>CONSULTORIA</b><small>RURAL</small></span></a>
+      <span>© 2026 Consultoria Rural</span>
+    </div>
+  </section>
+
+</main>
+
+<!-- Funcionalidades (WhatsApp e imagens) em script.js -->
+<script src="script.js" defer></script>
+</body>
+</html>

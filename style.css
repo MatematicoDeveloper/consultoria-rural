@@ -1,0 +1,250 @@
+/* ============================================================
+   CONSULTORIA RURAL - style.css (versão simples, letras grandes)
+   Índice (procure pelo número):
+   1 Cores | 2 Base e letras | 3 Cabeçalho | 4 Botões | 5 Início
+   6 Serviços (cards) | 7 Contato e rodapé | 8 Celular
+   ============================================================ */
+
+
+/* ============================================================
+   1. CORES
+   Para mudar uma cor do site inteiro, altere a variável abaixo.
+   O tema escuro (celulares configurados em modo escuro) vem logo depois.
+   ============================================================ */
+:root {
+  --bg: #FFFFFF;      /* fundo principal (branco) */
+  --bg2: #FAF9F6;    /* fundo secundário (branco sofisticado) */
+  --card: #FFFFFF;   /* fundo dos cards */
+  --ink: #242424;    /* títulos e textos (grafite) */
+  --muted: #4D493F;  /* textos de apoio (cinza escuro, fácil de ler) */
+  --gold: #C5A059;   /* DOURADO: botões e detalhes */
+  --line: #E1CCA0;   /* bordas (dourado suave) */
+  --band: #111111;   /* fundo da seção preta */
+  color-scheme: light;
+  box-sizing: border-box;
+  padding-top: env(safe-area-inset-top, 0px);   /* respeita o entalhe do celular */
+}
+
+/* Tema escuro automático (segue a configuração do aparelho) */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #111111; --bg2: #171614; --card: #1A1917; --ink: #F4F1EA;
+    --muted: #C9C3B5; --line: rgba(225,204,160,.4); --band: #0A0A0A;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #111111; --bg2: #171614; --card: #1A1917; --ink: #F4F1EA;
+  --muted: #C9C3B5; --line: rgba(225,204,160,.4); --band: #0A0A0A;
+  color-scheme: dark;
+}
+
+
+/* ============================================================
+   2. BASE E LETRAS
+   Tamanho do texto normal: 20px (font no "body").
+   Para aumentar ou diminuir TODAS as letras, mude o 20px.
+   Títulos: Marcellus | Textos e botões: Jost
+   As fontes ficam no próprio site (pasta "fonts": marcellus.woff2 e jost.woff2).
+   Sem os arquivos, o aparelho usa a fonte padrão dele (Georgia / sistema).
+   ============================================================ */
+@font-face { font-family: Marcellus; font-weight: 400; font-display: swap; src: url("fonts/marcellus.woff2") format("woff2"); }
+@font-face { font-family: Jost; font-weight: 400 500; font-display: swap; src: url("fonts/jost.woff2") format("woff2"); }
+
+*, ::before, ::after { box-sizing: inherit; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font: 400 20px/1.6 Jost, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;   /* evita rolagem para os lados (celulares antigos) */
+  overflow-x: clip;     /* mesma função, versão mais nova */
+}
+h1, h2, h3 {
+  font-family: Marcellus, Georgia, serif;
+  font-weight: 400;
+  line-height: 1.15;
+  margin: 0;
+  overflow-wrap: break-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  text-wrap: balance;
+}
+p { margin: 0; }
+img, svg { max-width: 100%; }
+.sprite { position: absolute; width: 0; height: 0; overflow: hidden; }   /* símbolos escondidos (sem style inline, por causa do CSP) */
+
+/* .wrap = largura máxima do conteúdo (1000px) e margens laterais */
+.wrap {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-left: 20px;    /* margem básica (celulares antigos) */
+  padding-right: 20px;
+  padding-left: max(clamp(20px, 5vw, 32px), env(safe-area-inset-left, 0px));
+  padding-right: max(clamp(20px, 5vw, 32px), env(safe-area-inset-right, 0px));
+}
+
+
+/* ============================================================
+   3. CABEÇALHO E LOGOTIPO
+   ============================================================ */
+header { border-bottom: 1px solid var(--line); }
+.bar { display: flex; align-items: center; min-height: 72px; }
+.logo { display: flex; align-items: center; color: var(--ink); text-decoration: none; }
+.mark { width: 44px; height: 44px; margin-right: 12px; flex: none; }              /* símbolo */
+.logo b { display: block; font: 500 18px/1.1 Jost, sans-serif; letter-spacing: .2em; }   /* CONSULTORIA */
+.logo small { display: block; font-size: 12px; letter-spacing: .5em; margin-top: 4px; color: var(--muted); } /* RURAL */
+
+
+/* ============================================================
+   4. BOTÕES
+   .btn = botão dourado grande (64px de altura, fácil de tocar)
+   .ic  = ícone de conversa dentro do botão
+   ============================================================ */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 64px;
+  padding: 16px 22px;
+  background: var(--gold);
+  color: #111;
+  border: 2px solid var(--gold);
+  border-radius: 8px;
+  font: 500 20px/1.2 Jost, sans-serif;
+  text-decoration: none;
+  text-align: center;
+  cursor: pointer;
+  transition: background .25s;
+}
+.btn:active { background: #B28D48; }                 /* ao tocar */
+.btn:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; }
+@media (hover:hover) { .btn:hover { background: #D4B777; } }  /* mouse (só notebook) */
+.btn .t { display: block; text-align: left; }
+.btn small { display: block; font-size: 16px; font-weight: 400; }   /* 2ª linha do botão: pelo WhatsApp */
+.ic { width: 26px; height: 26px; margin-right: 12px; flex: none; fill: none; stroke: currentColor; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+
+/* ============================================================
+   5. INÍCIO (título, 3 passos e mascote)
+   ============================================================ */
+.hero { padding: 48px 0; padding: clamp(40px, 7vw, 80px) 0; }
+.hero .wrap { display: grid; grid-template-columns: 1.2fr .8fr; gap: 40px; align-items: center; }
+.hero .wrap > * { min-width: 0; }
+h1 { font-size: clamp(36px, 6.4vw, 58px); }                          /* título principal */
+
+/* COMO USAR: 3 passos com número dourado */
+.steps { list-style: none; margin: 28px 0 0; padding: 0; }
+.steps li { display: flex; align-items: center; margin-bottom: 18px; font-size: 22px; line-height: 1.35; }
+.steps span { flex: none; width: 48px; height: 48px; margin-right: 16px; border-radius: 50%; background: var(--gold); color: #111; display: flex; align-items: center; justify-content: center; font: 500 24px/1 Jost, sans-serif; }
+
+/* MASCOTE: width = tamanho. .empty aparece só se o PNG não for encontrado */
+.mascot { width: 100%; max-width: 340px; margin-left: auto; margin-right: auto; }
+.mascot img { display: block; width: 100%; height: auto; max-height: 420px; object-fit: contain; }
+.mascot span { display: none; }
+.mascot.empty { display: flex; align-items: center; justify-content: center; min-height: 200px; aspect-ratio: 1; border: 2px dashed var(--gold); border-radius: 50%; }
+.mascot.empty span { display: block; text-align: center; padding: 24px; color: var(--muted); font-size: 16px; line-height: 1.4; }
+
+
+/* ============================================================
+   6. SERVIÇOS (5 cards)
+   .grid = colunas (3 no notebook, 1 no celular e tablet)
+   .card = cada serviço | .ico = círculo do ícone
+   ============================================================ */
+.section { padding: 56px 0; padding: clamp(48px, 7vw, 80px) 0; background: var(--bg2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+.head { margin-bottom: 36px; max-width: 640px; }
+.head h2 { font-size: clamp(30px, 5vw, 42px); }
+.head p { color: var(--muted); margin-top: 14px; }
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  padding: 32px 28px 28px;
+}
+.card::before { content: ""; position: absolute; top: -1px; left: 28px; width: 48px; height: 3px; background: var(--gold); } /* detalhe dourado */
+.ico { width: 60px; height: 60px; border: 1px solid var(--line); border-radius: 50%; display: grid; place-items: center; margin-bottom: 20px; }
+.ico svg { width: 28px; height: 28px; fill: none; stroke: var(--gold); stroke-width: 1.5; stroke-linecap: round; stroke-linejoin: round; }
+.card h3 { font-size: 30px; }
+.card p { color: var(--muted); margin: 10px 0 26px; flex: 1; }
+.card .btn { width: 100%; }
+
+/* Notebook: 3 cards por linha; a última linha fica centralizada (margens internas menores para o botão caber) */
+@media (min-width: 1000px) {
+  .grid { display: flex; flex-wrap: wrap; justify-content: center; }
+  .card { width: calc((100% - 40px) / 3); }
+  .card { padding: 32px 24px 28px; }
+  .card::before { left: 24px; }
+  .card .btn { padding: 16px 12px; }
+}
+
+
+/* ============================================================
+   7. CONTATO (fundo preto) E RODAPÉ
+   ============================================================ */
+.band { background: var(--band); color: #F4F1EA; padding-top: 64px; padding-top: clamp(56px, 8vw, 88px); text-align: center; }
+.band h2 { font-size: clamp(30px, 5vw, 44px); color: #FFFFFF; }
+.band p { color: #CFC9BB; margin: 16px auto 32px; max-width: 28em; }
+.band .logo { color: #F4F1EA; }
+.band .logo small { color: #B9B3A6; }
+.foot {
+  margin-top: 56px;
+  margin-top: clamp(48px, 7vw, 72px);
+  padding-top: 24px;
+  padding-bottom: 28px;
+  padding-bottom: calc(28px + env(safe-area-inset-bottom, 0px));  /* não fica atrás da barra do iPhone */
+  border-top: 1px solid rgba(225,204,160,.25);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  color: #B9B3A6;
+  font-size: 16px;
+  text-align: left;
+}
+
+
+/* ============================================================
+   8. CELULAR (telas pequenas)
+   até 800px = início em 1 coluna e mascote menor
+   até 999px = cards em 1 coluna
+   até 700px = cards mais compactos
+   até 380px = celulares bem pequenos (botão e card mais compactos)
+   ============================================================ */
+@media (max-width: 800px) {
+  .hero .wrap { grid-template-columns: 1fr; }
+  h1 { font-size: clamp(32px, 9vw, 52px); }     /* título cabe sem estourar a tela */
+  .mascot { width: 50%; max-width: 160px; }        /* mascote menor para os serviços aparecerem logo */
+  .mascot.empty { min-height: 140px; }
+  .mascot.empty span { padding: 10px; font-size: 14px; }
+  .steps li { font-size: 21px; }
+}
+@media (max-width: 999px) {
+  .grid { grid-template-columns: 1fr; }   /* cards em 1 coluna */
+}
+@media (max-width: 700px) {
+  .card { padding: 28px 22px 24px; }
+  .card::before { left: 22px; }
+}
+@media (max-width: 480px) {
+  .foot { flex-direction: column; align-items: flex-start; }
+  .band .btn { width: 100%; }
+}
+@media (max-width: 380px) {
+  .btn { font-size: 18px; padding: 14px 14px; }
+  .btn small { font-size: 15px; }
+  .steps span { width: 42px; height: 42px; margin-right: 12px; }
+  .ic { margin-right: 10px; }
+  .card h3 { font-size: 27px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; scroll-behavior: auto !important; }
+}
